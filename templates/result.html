@@ -44,9 +44,31 @@
             color: #2c3e50;
             margin-bottom: 15px;
         }
-        .sidebar p {
-            margin-bottom: 10px;
+        .cluster-title {
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        .cluster-0 { color: #1f77b4; }
+        .cluster-1 { color: #ff7f0e; }
+        .cluster-2 { color: #2ca02c; }
+        .cluster-details {
+            list-style-type: none;
+            padding-left: 0;
             font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .cluster-details li {
+            margin-bottom: 5px;
+        }
+        .table-container {
+            margin-top: 30px;
+        }
+        table {
+            font-size: 14px;
+        }
+        th, td {
+            text-align: center;
         }
     </style>
 </head>
@@ -56,13 +78,41 @@
         <div class="row">
             <div class="col-md-8 text-center">
                 <img src="data:image/png;base64,{{ plot_url }}" alt="Biểu đồ phân cụm">
+                <div class="table-container">
+                    <h5 class="mt-4">Dữ liệu chi tiết</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Tuổi</th>
+                                <th>Thu nhập hàng năm</th>
+                                <th>Cụm</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in table_data %}
+                            <tr>
+                                <td>{{ row['Age'] }}</td>
+                                <td>{{ row['AnnualIncome'] }}</td>
+                                <td class="cluster-{{ row['Cluster'] }}">Cụm {{ row['Cluster'] + 1 }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="sidebar">
                     <h5>Mô tả các cụm</h5>
-                    <p><strong>Cụm 1:</strong> Khách hàng trẻ, thu nhập thấp, chi tiêu trung bình.</p>
-                    <p><strong>Cụm 2:</strong> Khách hàng trung niên, thu nhập cao, chi tiêu cao.</p>
-                    <p><strong>Cụm 3:</strong> Khách hàng lớn tuổi, thu nhập trung bình, chi tiêu thấp.</p>
+                    {% for desc in cluster_descriptions %}
+                    <div class="cluster-title cluster-{{ loop.index0 }}">Cụm {{ loop.index }}</div>
+                    <ul class="cluster-details">
+                        <li>{{ desc['context'] }}</li>
+                        <li>Tuổi trung bình: {{ desc['avg_age'] }}</li>
+                        <li>Thu nhập trung bình: {{ desc['avg_income'] }} triệu đồng</li>
+                        <li>Điểm chi tiêu trung bình: {{ desc['avg_spending'] }}</li>
+                        <li>Giới tính: Nữ {{ desc['female_count'] }}, Nam {{ desc['male_count'] }}</li>
+                    </ul>
+                    {% endfor %}
                 </div>
             </div>
         </div>
