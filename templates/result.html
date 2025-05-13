@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả Phân Cụm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .btn-secondary {
+            background-color: #7f8c8d;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        .btn-secondary:hover {
+            background-color: #6c757d;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            height: fit-content;
+        }
+        .sidebar h5 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .sidebar p {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Kết quả Phân Cụm Khách Hàng</h1>
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <img src="data:image/png;base64,{{ plot_url }}" alt="Biểu đồ phân cụm">
+            </div>
+            <div class="col-md-4">
+                <div class="sidebar">
+                    <h5>Mô tả các cụm</h5>
+                    <p><strong>Cụm 1:</strong> Khách hàng trẻ, thu nhập thấp, chi tiêu trung bình.</p>
+                    <p><strong>Cụm 2:</strong> Khách hàng trung niên, thu nhập cao, chi tiêu cao.</p>
+                    <p><strong>Cụm 3:</strong> Khách hàng lớn tuổi, thu nhập trung bình, chi tiêu thấp.</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-secondary">Quay lại</a>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
